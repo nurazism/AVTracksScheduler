@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="avtracksdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="act_fleetpairing">
+          <Key>
+            <PropertyRef Name="fleet_pair_id" />
+          </Key>
+          <Property Name="fleet_pair_id" Type="int" Nullable="false" />
+          <Property Name="pair_start_date" Type="datetime" Nullable="false" />
+          <Property Name="pair_end_date" Type="datetime" />
+          <Property Name="proposed_date" Type="datetime" />
+          <Property Name="fleet_parent_id" Type="int" />
+          <Property Name="fleet_child_id" Type="int" />
+          <Property Name="status" Type="bit" />
+          <Property Name="account_id" Type="int" />
+          <Property Name="timestamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="device_fleet_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="device_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fleet_id" Type="int" Nullable="false" />
+          <Property Name="start_date" Type="datetime" Nullable="false" />
+          <Property Name="end_date" Type="datetime" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="map_data">
+          <Key>
+            <PropertyRef Name="device_id" />
+            <PropertyRef Name="device_type" />
+            <PropertyRef Name="date" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="device_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="device_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="latitude" Type="float" />
+          <Property Name="longitude" Type="float" />
+          <Property Name="position" Type="varchar" MaxLength="150" />
+          <Property Name="altitude" Type="float" />
+          <Property Name="speed_knots" Type="float" />
+          <Property Name="course" Type="float" />
+          <Property Name="satellites" Type="int" />
+          <Property Name="hdop" Type="int" />
+          <Property Name="battery" Type="int" />
+          <Property Name="cellular_strength" Type="int" />
+          <Property Name="device_status" Type="varchar" MaxLength="50" />
+          <Property Name="power_status" Type="varchar" MaxLength="50" />
+          <Property Name="timestamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="md_fleet">
+          <Key>
+            <PropertyRef Name="fleet_id" />
+          </Key>
+          <Property Name="fleet_id" Type="int" Nullable="false" />
+          <Property Name="sap_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sap_resource_id" Type="varchar" MaxLength="50" />
+          <Property Name="fleet_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fleet_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contractor_comp_id" Type="int" />
+          <Property Name="contractor_comp_name" Type="varchar" MaxLength="50" />
+          <Property Name="owner_id" Type="int" />
+          <Property Name="owner_name" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="MD_Geofence">
+          <Key>
+            <PropertyRef Name="geofenceID" />
+          </Key>
+          <Property Name="geofenceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="geofenceName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="lat1" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="long1" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="lat2" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="long2" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="lat3" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="long3" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="lat4" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="long4" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="coalAreaType" Type="varchar" MaxLength="50" />
+          <Property Name="fuelAreaType" Type="varchar" MaxLength="50" />
+          <Property Name="cycleIdentifier" Type="tinyint" Nullable="false" />
+          <Property Name="orderGeofence" Type="int" Nullable="false" />
+          <Property Name="tripSectionID" Type="int" Nullable="false" />
+          <Property Name="portID" Type="int" />
+          <Property Name="layerZIndex" Type="int" />
+          <Property Name="distance" Type="int" Nullable="false" />
+          <Property Name="upstreamSteamingDuration" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="downstreamSteamingDuration" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="upstreamSteamingDuration_MBP" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="downstreamSteamingDuration_MBP" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="avgDurationMinutes" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="locationAreaID" Type="int" />
+        </EntityType>
+        <EntityType Name="time_setup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="device_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="time" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_fleet_id">
+          <End Role="md_fleet" Type="Self.md_fleet" Multiplicity="1" />
+          <End Role="device_fleet_mapping" Type="Self.device_fleet_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="md_fleet">
+              <PropertyRef Name="fleet_id" />
+            </Principal>
+            <Dependent Role="device_fleet_mapping">
+              <PropertyRef Name="fleet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="avtracksdbModelStoreContainer">
+          <EntitySet Name="act_fleetpairing" EntityType="Self.act_fleetpairing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="device_fleet_mapping" EntityType="Self.device_fleet_mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="map_data" EntityType="Self.map_data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="md_fleet" EntityType="Self.md_fleet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MD_Geofence" EntityType="Self.MD_Geofence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="time_setup" EntityType="Self.time_setup" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_fleet_id" Association="Self.FK_fleet_id">
+            <End Role="md_fleet" EntitySet="md_fleet" />
+            <End Role="device_fleet_mapping" EntitySet="device_fleet_mapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="avtracksdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="act_fleetpairing">
+          <Key>
+            <PropertyRef Name="fleet_pair_id" />
+          </Key>
+          <Property Name="fleet_pair_id" Type="Int32" Nullable="false" />
+          <Property Name="pair_start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pair_end_date" Type="DateTime" Precision="3" />
+          <Property Name="proposed_date" Type="DateTime" Precision="3" />
+          <Property Name="fleet_parent_id" Type="Int32" />
+          <Property Name="fleet_child_id" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="account_id" Type="Int32" />
+          <Property Name="timestamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="device_fleet_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="device_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fleet_id" Type="Int32" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Precision="3" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="md_fleet" Relationship="Self.FK_fleet_id" FromRole="device_fleet_mapping" ToRole="md_fleet" />
+        </EntityType>
+        <EntityType Name="map_data">
+          <Key>
+            <PropertyRef Name="device_id" />
+            <PropertyRef Name="device_type" />
+            <PropertyRef Name="date" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="device_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="device_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="latitude" Type="Double" />
+          <Property Name="longitude" Type="Double" />
+          <Property Name="position" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="altitude" Type="Double" />
+          <Property Name="speed_knots" Type="Double" />
+          <Property Name="course" Type="Double" />
+          <Property Name="satellites" Type="Int32" />
+          <Property Name="hdop" Type="Int32" />
+          <Property Name="battery" Type="Int32" />
+          <Property Name="cellular_strength" Type="Int32" />
+          <Property Name="device_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="power_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="timestamp" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="md_fleet">
+          <Key>
+            <PropertyRef Name="fleet_id" />
+          </Key>
+          <Property Name="fleet_id" Type="Int32" Nullable="false" />
+          <Property Name="sap_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sap_resource_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fleet_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fleet_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contractor_comp_id" Type="Int32" />
+          <Property Name="contractor_comp_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="owner_id" Type="Int32" />
+          <Property Name="owner_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <NavigationProperty Name="device_fleet_mapping" Relationship="Self.FK_fleet_id" FromRole="md_fleet" ToRole="device_fleet_mapping" />
+        </EntityType>
+        <EntityType Name="MD_Geofence">
+          <Key>
+            <PropertyRef Name="geofenceID" />
+          </Key>
+          <Property Name="geofenceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="geofenceName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lat1" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="long1" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="lat2" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="long2" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="lat3" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="long3" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="lat4" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="long4" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="coalAreaType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fuelAreaType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cycleIdentifier" Type="Byte" Nullable="false" />
+          <Property Name="orderGeofence" Type="Int32" Nullable="false" />
+          <Property Name="tripSectionID" Type="Int32" Nullable="false" />
+          <Property Name="portID" Type="Int32" />
+          <Property Name="layerZIndex" Type="Int32" />
+          <Property Name="distance" Type="Int32" Nullable="false" />
+          <Property Name="upstreamSteamingDuration" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="downstreamSteamingDuration" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="upstreamSteamingDuration_MBP" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="downstreamSteamingDuration_MBP" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="avgDurationMinutes" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="locationAreaID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="time_setup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="device_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="time" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_fleet_id">
+          <End Role="md_fleet" Type="Self.md_fleet" Multiplicity="1" />
+          <End Role="device_fleet_mapping" Type="Self.device_fleet_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="md_fleet">
+              <PropertyRef Name="fleet_id" />
+            </Principal>
+            <Dependent Role="device_fleet_mapping">
+              <PropertyRef Name="fleet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="avtracksdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="act_fleetpairing" EntityType="Self.act_fleetpairing" />
+          <EntitySet Name="device_fleet_mapping" EntityType="Self.device_fleet_mapping" />
+          <EntitySet Name="map_data" EntityType="Self.map_data" />
+          <EntitySet Name="md_fleet" EntityType="Self.md_fleet" />
+          <EntitySet Name="MD_Geofence" EntityType="Self.MD_Geofence" />
+          <EntitySet Name="time_setup" EntityType="Self.time_setup" />
+          <AssociationSet Name="FK_fleet_id" Association="Self.FK_fleet_id">
+            <End Role="md_fleet" EntitySet="md_fleet" />
+            <End Role="device_fleet_mapping" EntitySet="device_fleet_mapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="avtracksdbModelStoreContainer" CdmEntityContainer="avtracksdbEntities">
+          <EntitySetMapping Name="act_fleetpairing">
+            <EntityTypeMapping TypeName="avtracksdbModel.act_fleetpairing">
+              <MappingFragment StoreEntitySet="act_fleetpairing">
+                <ScalarProperty Name="fleet_pair_id" ColumnName="fleet_pair_id" />
+                <ScalarProperty Name="pair_start_date" ColumnName="pair_start_date" />
+                <ScalarProperty Name="pair_end_date" ColumnName="pair_end_date" />
+                <ScalarProperty Name="proposed_date" ColumnName="proposed_date" />
+                <ScalarProperty Name="fleet_parent_id" ColumnName="fleet_parent_id" />
+                <ScalarProperty Name="fleet_child_id" ColumnName="fleet_child_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="account_id" ColumnName="account_id" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="device_fleet_mapping">
+            <EntityTypeMapping TypeName="avtracksdbModel.device_fleet_mapping">
+              <MappingFragment StoreEntitySet="device_fleet_mapping">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="fleet_id" ColumnName="fleet_id" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="map_data">
+            <EntityTypeMapping TypeName="avtracksdbModel.map_data">
+              <MappingFragment StoreEntitySet="map_data">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="device_type" ColumnName="device_type" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="altitude" ColumnName="altitude" />
+                <ScalarProperty Name="speed_knots" ColumnName="speed_knots" />
+                <ScalarProperty Name="course" ColumnName="course" />
+                <ScalarProperty Name="satellites" ColumnName="satellites" />
+                <ScalarProperty Name="hdop" ColumnName="hdop" />
+                <ScalarProperty Name="battery" ColumnName="battery" />
+                <ScalarProperty Name="cellular_strength" ColumnName="cellular_strength" />
+                <ScalarProperty Name="device_status" ColumnName="device_status" />
+                <ScalarProperty Name="power_status" ColumnName="power_status" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="md_fleet">
+            <EntityTypeMapping TypeName="avtracksdbModel.md_fleet">
+              <MappingFragment StoreEntitySet="md_fleet">
+                <ScalarProperty Name="fleet_id" ColumnName="fleet_id" />
+                <ScalarProperty Name="sap_id" ColumnName="sap_id" />
+                <ScalarProperty Name="sap_resource_id" ColumnName="sap_resource_id" />
+                <ScalarProperty Name="fleet_type" ColumnName="fleet_type" />
+                <ScalarProperty Name="fleet_name" ColumnName="fleet_name" />
+                <ScalarProperty Name="contractor_comp_id" ColumnName="contractor_comp_id" />
+                <ScalarProperty Name="contractor_comp_name" ColumnName="contractor_comp_name" />
+                <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+                <ScalarProperty Name="owner_name" ColumnName="owner_name" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MD_Geofence">
+            <EntityTypeMapping TypeName="avtracksdbModel.MD_Geofence">
+              <MappingFragment StoreEntitySet="MD_Geofence">
+                <ScalarProperty Name="geofenceID" ColumnName="geofenceID" />
+                <ScalarProperty Name="geofenceName" ColumnName="geofenceName" />
+                <ScalarProperty Name="lat1" ColumnName="lat1" />
+                <ScalarProperty Name="long1" ColumnName="long1" />
+                <ScalarProperty Name="lat2" ColumnName="lat2" />
+                <ScalarProperty Name="long2" ColumnName="long2" />
+                <ScalarProperty Name="lat3" ColumnName="lat3" />
+                <ScalarProperty Name="long3" ColumnName="long3" />
+                <ScalarProperty Name="lat4" ColumnName="lat4" />
+                <ScalarProperty Name="long4" ColumnName="long4" />
+                <ScalarProperty Name="coalAreaType" ColumnName="coalAreaType" />
+                <ScalarProperty Name="fuelAreaType" ColumnName="fuelAreaType" />
+                <ScalarProperty Name="cycleIdentifier" ColumnName="cycleIdentifier" />
+                <ScalarProperty Name="orderGeofence" ColumnName="orderGeofence" />
+                <ScalarProperty Name="tripSectionID" ColumnName="tripSectionID" />
+                <ScalarProperty Name="portID" ColumnName="portID" />
+                <ScalarProperty Name="layerZIndex" ColumnName="layerZIndex" />
+                <ScalarProperty Name="distance" ColumnName="distance" />
+                <ScalarProperty Name="upstreamSteamingDuration" ColumnName="upstreamSteamingDuration" />
+                <ScalarProperty Name="downstreamSteamingDuration" ColumnName="downstreamSteamingDuration" />
+                <ScalarProperty Name="upstreamSteamingDuration_MBP" ColumnName="upstreamSteamingDuration_MBP" />
+                <ScalarProperty Name="downstreamSteamingDuration_MBP" ColumnName="downstreamSteamingDuration_MBP" />
+                <ScalarProperty Name="avgDurationMinutes" ColumnName="avgDurationMinutes" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="locationAreaID" ColumnName="locationAreaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="time_setup">
+            <EntityTypeMapping TypeName="avtracksdbModel.time_setup">
+              <MappingFragment StoreEntitySet="time_setup">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="device_type" ColumnName="device_type" />
+                <ScalarProperty Name="time" ColumnName="time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

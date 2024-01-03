@@ -1,0 +1,12 @@
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\bin\Debug\AVTracksScheduler.exe.config
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\bin\Debug\AVTracksScheduler.exe
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\bin\Debug\AVTracksScheduler.pdb
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\obj\Debug\AVTracksScheduler.csprojAssemblyReference.cache
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\obj\Debug\AVTracksScheduler.csproj.CoreCompileInputs.cache
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\obj\Debug\AVTracksScheduler.exe
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\obj\Debug\AVTracksScheduler.pdb
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\bin\Debug\EntityFramework.dll
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\bin\Debug\EntityFramework.xml
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mazis\source\repos\AVTracksScheduler\AVTracksScheduler\obj\Debug\AVTracksScheduler.csproj.CopyComplete
